@@ -15,7 +15,7 @@ var app = (function() {
         theme: getUrlParam('theme')
       };
       if (obj.theme === null) {
-        obj.theme = 'league';
+        obj.theme = 'lowpoly';
       }
       obj.theme = 'tools/css/theme/' + obj.theme + '.css';
       obj.file = './markdown/' + obj.file + '.md';
