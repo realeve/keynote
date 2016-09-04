@@ -1,39 +1,119 @@
-var getUrlParam = function(name) {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-  var r = encodeURI(window.location.search).substr(1).match(reg);
-  if (r !== null) return decodeURI(r[2]);
-  return null;
-};
+var app = (function() {
 
-const getQueryObj = () => {
-  var obj = {
-    file: getUrlParam('file'),
-    title: decodeURI(getUrlParam('title')),
-    theme: getUrlParam('theme')
+  var initDom = function() {
+    var getUrlParam = function(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+      var r = encodeURI(window.location.search).substr(1).match(reg);
+      if (r !== null) return decodeURI(r[2]);
+      return null;
+    };
+
+    const getQueryObj = () => {
+      var obj = {
+        file: getUrlParam('file'),
+        title: decodeURI(getUrlParam('title')),
+        theme: getUrlParam('theme')
+      };
+      if (obj.theme === null) {
+        obj.theme = 'league';
+      }
+      obj.theme = 'tools/css/theme/' + obj.theme + '.css';
+      obj.file = './markdown/' + obj.file + '.md';
+      return obj;
+    };
+
+    let node = document.getElementById('stage');
+    let queryObj = getQueryObj();
+    document.title = queryObj.title;
+    document.getElementById('theme').setAttribute('href', queryObj.theme);
+    node.dataset.markdown = queryObj.file;
   };
-  if (obj.theme === null) {
-    obj.theme = 'league';
-  }
-  obj.theme = 'tools/css/theme/' + obj.theme + '.css';
-  obj.file = './markdown/' + obj.file + '.md';
-  // var str = decodeURI(location.search.slice(1));
-  // var arr = str.split('&');
-  // arr.forEach(value => {
-  //   let k = value.split('=')[0];
-  //   let v = value.replace(k + '=', '');
-  //   if (k && v) obj[k] = v;
-  // });
 
-  return obj;
-};
+  var appendThemeList = function() {
 
-document.addEventListener('DOMContentLoaded', () => {
-  let node = document.getElementById('stage');
-  let queryObj = getQueryObj();
-  document.title = queryObj.title;
-  document.getElementById('theme').setAttribute('href', queryObj.theme);
-  node.dataset.markdown = queryObj.file;
-  Reveal.initialize({
+    var getDate = function() {
+      var jsRight = function(sr, rightn) {
+        return sr.substring(sr.length - rightn, sr.length);
+      };
+      var date = new Date();
+      var a = date.getFullYear();
+      var b = jsRight(('0' + (date.getMonth() + 1)), 2);
+      var c = jsRight(('0' + date.getDate()), 2);
+      return a + '-' + b + '-' + c;
+    };
+
+    var date = '<h4>' + getDate() + '</h4>';
+    var str = `
+    <p style="margin-top:40px; font-Size:14pt;">请选择主题: <br>
+      <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/black.css'); return false;">Black (default)</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/white.css'); return false;">White</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/league.css'); return false;">League</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/sky.css'); return false;">Sky</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/beige.css'); return false;">Beige</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/simple.css'); return false;">Simple</a> <br>
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/serif.css'); return false;">Serif</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/blood.css'); return false;">Blood</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/night.css'); return false;">Night</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/moon.css'); return false;">Moon</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/solarized.css'); return false;">Solarized</a>
+    </p>`;
+    $('section').first().append(date + str);
+  };
+
+  var slideStarted = 0;
+  var isFullScreen = false;
+  var clock = function() {
+    var iMinute, iSecond;
+    slideStarted++;
+    slideStarted = slideStarted % 3600;
+    iMinute = parseInt(slideStarted / 60);
+    iSecond = slideStarted % 60;
+    var strTime = ("0" + iMinute).substring(("0" + iMinute).length - 2) + ":" + ("0" + iSecond).substring(("0" + iSecond).length - 2);
+    $("#clock").text(strTime);
+  };
+
+  var nextPage = function() {
+    startTimer();
+    Reveal.next();
+  };
+
+  var enterFullscreen = function() {
+
+    var element = document.body;
+    // Check which implementation is available
+    var requestMethod = element.requestFullScreen ||
+      element.webkitRequestFullscreen ||
+      element.webkitRequestFullScreen ||
+      element.mozRequestFullScreen ||
+      element.msRequestFullscreen;
+    if (requestMethod) {
+      requestMethod.apply(element);
+    }
+  };
+
+  var startTimer = function() {
+    if (!slideStarted) {
+      setInterval(clock, 1000);
+    }
+    if (!isFullScreen) {
+      enterFullscreen();
+      isFullScreen = true;
+    }
+  };
+
+  $('body').on('keydown', function(event) {
+    var key = event.key;
+    var keyName = event.keyCode;
+    console.log(key + ':' + keyName);
+    if (event.keyCode != 27 && keyName != 'F5' && key != 'b') {
+      enterFullscreen();
+    } else if (event.keyCode == 27) {
+      isFullScreen = false;
+    }
+  });
+
+  var option = {
     width: 960,
     height: 700,
 
@@ -45,11 +125,48 @@ document.addEventListener('DOMContentLoaded', () => {
     maxScale: 1.5,
 
     history: true,
+    mouseWheel: true, //鼠标滚动
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: true,
+    rollingLinks: true,
+
+    transition: 'slide', // none/fade/slide/convex/concave/zoom/default
+    // Number of slides away from the current that are visible
+    viewDistance: 5,
 
     dependencies: [{
       src: 'tools/plugin/markdown/marked.js'
     }, {
       src: 'tools/plugin/markdown/markdown.js'
-    }]
+    }, {
+      src: 'tools/plugin/highlight/highlight.min.js',
+      async: true,
+      callback: function() {
+        hljs.initHighlightingOnLoad();
+      }
+    }, {
+      src: 'tools/plugin/zoom-js/zoom.js',
+      async: true
+    }],
+    keyboard: {
+      32: nextPage
+    }
+  };
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initDom();
+    Reveal.initialize(option);
+  }, false);
+
+  Reveal.addEventListener('ready', function(event) {
+    appendThemeList();
   });
-}, false);
+
+})();

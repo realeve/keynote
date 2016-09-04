@@ -1,0 +1,13 @@
+ .reveal .timecount{
+   font-size:30%;
+   position:absolute;
+   bottom:55px;
+   right:0;
+   border:0;
+   z-index:99;
+   margin-right:49px;
+   padding:2px;
+   background-color:#000;
+   opacity: 0.9;
+   color:#fff;
+ }
