@@ -11,3 +11,69 @@
    opacity: 0.9;
    color:#fff;
  }
+
+   ::-webkit-scrollbar
+   {
+      width: 4px;
+      height: 4px;
+   }
+   ::-webkit-scrollbar-track-piece
+   {
+      background-color: #eee;
+      position: absolute;
+      width: 4px;
+      -webkit-border-radius: 1px;
+   }
+   ::-webkit-scrollbar-thumb:vertical
+   {
+      height: 4px;
+      background-color: #292a33;
+      -webkit-border-radius: 1px;
+      position: absolute;
+
+   }
+   ::-webkit-scrollbar-thumb:horizontal
+   {
+      width: 4px;
+      background-color: #292a33;
+      -webkit-border-radius: 1px;
+   }
+   blockquote,h5,h6,p{
+	   text-align:left;
+   }
+   .reveal .progress {
+		height: 8px;
+	}
+	
+	.reveal .progress span {border-radius:3px;}
+
+/*
+	 blockquote {
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		margin: 1.6em 0;
+		padding: 0 0 0 1.2em;
+		border-left: 0.4em solid #dddddd;
+		color: #888888;
+		min-height:20px;
+	}
+	
+    hr{
+        margin: 38px 0;
+        border: none;
+        border-bottom: 1px dashed #e3e3e3;
+        color: #e3e3e3;
+        height: 1px;
+        line-height:1px;
+        font-size:1px;
+        overflow: hidden;
+    }
+
+   blockquote:first-child {
+       margin-top: 0
+   }
+   blockquote:last-child {
+       margin-bottom: 0
+   }
+  */
+  

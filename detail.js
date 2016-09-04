@@ -56,7 +56,9 @@ var app = (function() {
       <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/blood.css'); return false;">Blood</a> -
       <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/night.css'); return false;">Night</a> -
       <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/moon.css'); return false;">Moon</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/solarized.css'); return false;">Solarized</a>
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/solarized.css'); return false;">Solarized</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/lowpoly.css'); return false;">lowpoly</a> -
+      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/lowpolydark.css'); return false;">lowpolydark</a>
     </p>`;
     $('section').first().append(date + str);
   };
@@ -103,13 +105,13 @@ var app = (function() {
   };
 
   $('body').on('keydown', function(event) {
-    var key = event.key;
-    var keyName = event.keyCode;
+    var keyName = event.key;
+    var key = event.keyCode;
     console.log(key + ':' + keyName);
-    if (event.keyCode != 27 && keyName != 'F5' && key != 'b') {
-      enterFullscreen();
-    } else if (event.keyCode == 27) {
+    if (key == 27) {
       isFullScreen = false;
+    } else if (keyName != 'Control' && keyName != 'F12' && keyName != 'F5' && keyName != 'Alt' && keyName != 'b') {
+      enterFullscreen();
     }
   });
 
