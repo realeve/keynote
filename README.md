@@ -1,6 +1,6 @@
 ## HomePage
 
-[elemefe.github.io/keynote](https://elemefe.github.io/keynote)
+[realeve.github.io/keynote](https://realeve.github.io/keynote)
 
 ## document syntax
 
@@ -15,7 +15,7 @@
 > clone this repository to your local
 
 ```
-git clone git@github.com:ElemeFE/keynote.git
+git clone git@github.com:realeve/keynote.git
 vi keynote/markdown/xxx.md
 ```
 
@@ -41,6 +41,6 @@ vi keynote/menu.json
 }
 ```
 
-> create new pull request to that branch named "gh-pages" and @ [yusphy45](github.com/yusphy45)
+> create new pull request to that branch named "gh-pages" and @ [realeve](github.com/realeve)
 >
 > if your pr is merged then you can access your document online.
