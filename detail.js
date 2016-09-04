@@ -1,24 +1,38 @@
+var getUrlParam = function(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = encodeURI(window.location.search).substr(1).match(reg);
+  if (r !== null) return decodeURI(r[2]);
+  return null;
+};
+
 const getQueryObj = () => {
-  var obj = {};
-  var str = decodeURI(location.search.slice(1));
-  var arr = str.split('&');
-  arr.forEach(value => {
-    //当参数中有等于符号时，无法获取正确值
-    // let k = value.match(/(.+)=.+|$/)[1];
-    // let v = decodeURI(value.match(/.+=(.+)|$/)[1]);
-    let k = value.split('=')[0];
-    let v = value.replace(k + '=', '');
-    if (k && v) obj[k] = v;
-  });
+  var obj = {
+    file: getUrlParam('path'),
+    title: getUrlParam('title'),
+    theme: getUrlParam('theme')
+  };
+  if (obj.theme === null) {
+    obj.theme = 'league';
+  }
+  obj.theme = 'tools/css/theme/' + obj.theme + '.css';
+  obj.file = './markdown/' + obj.file + '.md';
+  // var str = decodeURI(location.search.slice(1));
+  // var arr = str.split('&');
+  // arr.forEach(value => {
+  //   let k = value.split('=')[0];
+  //   let v = value.replace(k + '=', '');
+  //   if (k && v) obj[k] = v;
+  // });
+
   return obj;
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   let node = document.getElementById('stage');
   let queryObj = getQueryObj();
-  let path = queryObj.path;
   document.title = queryObj.title;
-  node.dataset.markdown = path;
+  document.getElementById('theme').setAttribute('href', queryObj.theme);
+  node.dataset.markdown = queryObj.file;
   Reveal.initialize({
     width: 960,
     height: 700,
