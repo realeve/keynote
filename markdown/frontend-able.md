@@ -5,7 +5,7 @@
 > 基础与金融组 - 郭银锋
 
 <p>
-	reveal.js comes with a few themes built in: <br>
+	请选择主题: <br>
 	<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
 	<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
 	<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
