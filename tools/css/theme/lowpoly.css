@@ -108,8 +108,7 @@ body {
     border-left: 0.3em solid #16b0ff;
 	color: #556;
 	min-height:20px;
-	background:#fff;
-	opacity:0.8;	
+	background:rgba(255,255,255,0.8);
 }
 
 hr{
@@ -198,6 +197,7 @@ hr{
   font-weight:bold;
  }
 .reveal a {
+  position:none;
   line-height: 1.2em;
   text-decoration: none;
   -webkit-transition: color 0.15s ease;
@@ -205,7 +205,8 @@ hr{
   transition: color 0.15s ease; }
 
 .reveal a:hover {
-  color: #74a8cb;
+  color: #fdfdfd;
+  background:#000;
   text-shadow: none;
   border: none;
   }

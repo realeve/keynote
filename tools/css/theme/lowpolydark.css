@@ -189,6 +189,7 @@ body {
  * LINKS    34b572
  *********************************************/
 .reveal a {
+  position:none;
   color: #ff8a00;
   text-decoration: none;
   -webkit-transition: color 0.15s ease;
