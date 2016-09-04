@@ -8,7 +8,7 @@ var getUrlParam = function(name) {
 const getQueryObj = () => {
   var obj = {
     file: getUrlParam('file'),
-    title: getUrlParam('title'),
+    title: decodeURI(getUrlParam('title')),
     theme: getUrlParam('theme')
   };
   if (obj.theme === null) {
