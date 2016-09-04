@@ -23,8 +23,8 @@ body {
   color: #403e4f; }
 
 ::selection {
-  color: #403e4f;
-  background: #134674;
+  color: #fff;
+  background: #26351C;
   text-shadow: none; }
 
 .reveal .slides > section, .reveal .slides > section > section {
