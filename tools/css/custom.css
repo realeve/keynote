@@ -38,16 +38,18 @@
       background-color: #292a33;
       -webkit-border-radius: 1px;
    }
+
    blockquote,h5,h6,p{
 	   text-align:left;
    }
-   .reveal .progress {
-		height: 8px;
-	}
-	
-	.reveal .progress span {border-radius:3px;}
 
 /*
+   .reveal .progress {
+    height: 8px;
+  }
+
+  .reveal .progress span {border-radius:3px;}
+
 	 blockquote {
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
@@ -57,7 +59,7 @@
 		color: #888888;
 		min-height:20px;
 	}
-	
+
     hr{
         margin: 38px 0;
         border: none;
@@ -76,4 +78,3 @@
        margin-bottom: 0
    }
   */
-  

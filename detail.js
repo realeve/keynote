@@ -19,6 +19,7 @@ var app = (function() {
       }
       obj.theme = 'tools/css/theme/' + obj.theme + '.css';
       obj.file = './markdown/' + obj.file + '.md';
+      obj.print = window.location.search.match(/print-pdf/gi) ? 'tools/css/print/pdf.css' : 'tools/css/print/paper.css';
       return obj;
     };
 
@@ -26,6 +27,8 @@ var app = (function() {
     let queryObj = getQueryObj();
     document.title = queryObj.title;
     document.getElementById('theme').setAttribute('href', queryObj.theme);
+    //打印PDF
+    document.getElementById('print').setAttribute('href', queryObj.print);
     node.dataset.markdown = queryObj.file;
   };
 
@@ -43,22 +46,14 @@ var app = (function() {
     };
 
     var date = '<h4>' + getDate() + '</h4>';
+    var styleList = ['white', 'league', 'sky', 'beige', 'simple', 'serif', 'blood', 'night', 'moon', 'solarized', 'lowpoly', 'lowpolydark', 'black', 'color', 'blue', 'green'];
+    styleList = styleList.map(function(item) {
+      return '<a href="#" name="theme" onclick="document.getElementById(\'theme\').setAttribute(\'href\',\'tools/css/theme/' + item + '.css\'); return false;">' + item + '</a>';
+    });
     var str = `
     <p style="margin-top:40px; font-Size:14pt;">请选择主题: <br>
       <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/black.css'); return false;">Black (default)</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/white.css'); return false;">White</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/league.css'); return false;">League</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/sky.css'); return false;">Sky</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/beige.css'); return false;">Beige</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/simple.css'); return false;">Simple</a> <br>
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/serif.css'); return false;">Serif</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/blood.css'); return false;">Blood</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/night.css'); return false;">Night</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/moon.css'); return false;">Moon</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/solarized.css'); return false;">Solarized</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/lowpoly.css'); return false;">lowpoly</a> -
-      <a href="#" name="theme" onclick="document.getElementById('theme').setAttribute('href','tools/css/theme/lowpolydark.css'); return false;">lowpolydark</a>
+      ${styleList.join(' - ')}
     </p>`;
     $('section').first().append(date + str);
   };
@@ -122,6 +117,8 @@ var app = (function() {
     // Factor of the display size that should remain empty around the content
     margin: 0.1,
 
+    center: true,
+
     // Bounds for smallest/largest possible scale to apply to content
     minScale: 0.2,
     maxScale: 1.5,
@@ -142,6 +139,9 @@ var app = (function() {
     // Number of slides away from the current that are visible
     viewDistance: 5,
 
+    slideNumber: 'c/t',
+    backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+    //parallaxBackgroundImage: './tools/img/LowPolly.png',
     dependencies: [{
       src: 'tools/plugin/markdown/marked.js'
     }, {
@@ -154,6 +154,9 @@ var app = (function() {
       }
     }, {
       src: 'tools/plugin/zoom-js/zoom.js',
+      async: true
+    }, {
+      src: 'tools/plugin/notes/notes.js',
       async: true
     }],
     keyboard: {
