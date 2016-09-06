@@ -15,7 +15,7 @@ var app = (function() {
         theme: getUrlParam('theme')
       };
       if (obj.theme === null) {
-        obj.theme = 'lowpoly';
+        obj.theme = 'color';
       }
       obj.theme = 'tools/css/theme/' + obj.theme + '.css';
       obj.file = './markdown/' + obj.file + '.md';
@@ -23,12 +23,14 @@ var app = (function() {
       return obj;
     };
 
-    let node = document.getElementById('stage');
+    // let node = document.getElementById('stage');
+    let node = document.getElementsByTagName('section')[0];
     let queryObj = getQueryObj();
     document.title = queryObj.title;
     document.getElementById('theme').setAttribute('href', queryObj.theme);
     //打印PDF
     document.getElementById('print').setAttribute('href', queryObj.print);
+    document.getElementById('custom').setAttribute('href', 'tools/css/custom.css');
     node.dataset.markdown = queryObj.file;
   };
 
@@ -90,7 +92,7 @@ var app = (function() {
   };
 
   var startTimer = function() {
-    if (!slideStarted) {
+    if (slideStarted === 0) {
       setInterval(clock, 1000);
     }
     if (!isFullScreen) {
@@ -126,14 +128,8 @@ var app = (function() {
     history: true,
     mouseWheel: true, //鼠标滚动
 
-    // Enables touch navigation on devices with touch input
-    touch: true,
-    // Hides the address bar on mobile devices
-    hideAddressBar: true,
-
     // Opens links in an iframe preview overlay
     previewLinks: true,
-    rollingLinks: true,
 
     transition: 'slide', // none/fade/slide/convex/concave/zoom/default
     // Number of slides away from the current that are visible
