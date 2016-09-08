@@ -103,7 +103,6 @@
 		options.separator = options.separator || DEFAULT_SLIDE_SEPARATOR;
 		options.notesSeparator = options.notesSeparator || DEFAULT_NOTES_SEPARATOR;
 		options.attributes = options.attributes || '';
-
 		return options;
 
 	}
@@ -347,6 +346,9 @@
 
 		var sections = document.querySelectorAll('[data-markdown]');
 
+		//MD文件默认图片目录
+		var DEFAULT_SLIDE_IMG_CONTENT = sections[0].getAttribute('data-img-content', true) || 'markdown';
+
 		for (var i = 0, len = sections.length; i < len; i++) {
 
 			var section = sections[i];
@@ -359,7 +361,10 @@
 				var notes = section.querySelector('aside.notes');
 				var markdown = getMarkdownFromSlide(section);
 
-				section.innerHTML = marked(markdown);
+				var html = marked(markdown);
+				//MD中引用的图片转为指定的目录
+				section.innerHTML = html.replace(RegExp(/<img src=".\//gi), '<img src="./' + DEFAULT_SLIDE_IMG_CONTENT+'/');
+
 				addAttributes(section, section, null, section.getAttribute('data-element-attributes') ||
 					section.parentNode.getAttribute('data-element-attributes') ||
 					DEFAULT_ELEMENT_ATTRIBUTES_SEPARATOR,

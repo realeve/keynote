@@ -160,6 +160,23 @@ var app = (function() {
     }
   };
 
+  var fixImgFolder = function() {
+    //MD文件默认图片目录
+    var DEFAULT_SLIDE_IMG_CONTENT = $('section').first().attr('data-img-content') || 'markdown';
+    var obj = $('section [data-markdown-parsed="true"] img');
+    var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT+'/');
+    obj.attr('src',imgSrc);
+  };
+
+  function fullImg() {
+        //图片处理
+        var img = $('section [data-markdown-parsed="true"] img');
+        var imgList = [];
+        for(var i=0;i<img.length;i++){
+          imgList.push(img[i]);
+        }
+        screenfull(imgList);
+    }
 
   document.addEventListener('DOMContentLoaded', () => {
     initDom();
@@ -168,6 +185,8 @@ var app = (function() {
 
   Reveal.addEventListener('ready', function(event) {
     appendThemeList();
+    fullImg(); //图片全屏
+    //fixImgFolder();
   });
 
 })();
