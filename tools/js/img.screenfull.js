@@ -16,7 +16,7 @@
             img.style.height = this.height + 'px';
             var top = this.height > $body.clientHeight ? 0 : ($body.clientHeight - this.height) / 2;
             img.style.top = top + 'px';
-            img.style.marginLeft = -this.width / 2 + 'px';
+			img.style.marginLeft = -this.width / 2 + 'px';
             img.classList.remove('transparent');
             img.onload = null;
         };

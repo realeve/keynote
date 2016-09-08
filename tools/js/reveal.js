@@ -171,6 +171,8 @@
 		overviewSlideWidth = null,
 		overviewSlideHeight = null,
 
+		overviewRatio = 2, //放大系数
+
 		// The horizontal and vertical index of the currently active slide
 		indexh,
 		indexv,
@@ -1822,11 +1824,12 @@
 			});
 
 			// Calculate slide sizes
-			var margin = 70;
 			var slideSize = getComputedSlideSize();
-			overviewSlideWidth = slideSize.width + margin;
-			overviewSlideHeight = slideSize.height + margin;
 
+			//var margin = slideSize.width;
+
+			overviewSlideWidth = slideSize.width * overviewRatio + 200;
+			overviewSlideHeight = slideSize.height * overviewRatio + 200;
 			// Reverse in RTL mode
 			if (config.rtl) {
 				overviewSlideWidth = -overviewSlideWidth;
@@ -1858,7 +1861,7 @@
 		// Layout slides
 		toArray(dom.wrapper.querySelectorAll(HORIZONTAL_SLIDES_SELECTOR)).forEach(function(hslide, h) {
 			hslide.setAttribute('data-index-h', h);
-			transformElement(hslide, 'translate3d(' + (h * overviewSlideWidth) + 'px, 0, 0)');
+			transformElement(hslide, 'translate3d(' + (h * overviewSlideWidth / overviewRatio) + 'px, 0, 0)');
 
 			if (hslide.classList.contains('stack')) {
 
@@ -1866,7 +1869,7 @@
 					vslide.setAttribute('data-index-h', h);
 					vslide.setAttribute('data-index-v', v);
 
-					transformElement(vslide, 'translate3d(0, ' + (v * overviewSlideHeight) + 'px, 0)');
+					transformElement(vslide, 'translate3d(0, ' + (v * overviewSlideHeight / overviewRatio) + 'px, 0)');
 				});
 
 			}
@@ -1874,10 +1877,10 @@
 
 		// Layout slide backgrounds
 		toArray(dom.background.childNodes).forEach(function(hbackground, h) {
-			transformElement(hbackground, 'translate3d(' + (h * overviewSlideWidth) + 'px, 0, 0)');
+			transformElement(hbackground, 'translate3d(' + (h * overviewSlideWidth / overviewRatio) + 'px, 0, 0)');
 
 			toArray(hbackground.querySelectorAll('.slide-background')).forEach(function(vbackground, v) {
-				transformElement(vbackground, 'translate3d(0, ' + (v * overviewSlideHeight) + 'px, 0)');
+				transformElement(vbackground, 'translate3d(0, ' + (v * overviewSlideHeight / overviewRatio) + 'px, 0)');
 			});
 		});
 
@@ -1888,12 +1891,13 @@
 	 * Called each time the current slide changes.
 	 */
 	function updateOverview() {
-
+		var x = 1400,
+			y = 2200;
 		transformSlides({
 			overview: [
-				'translateX(' + (-indexh * overviewSlideWidth) + 'px)',
-				'translateY(' + (-indexv * overviewSlideHeight) + 'px)',
-				'translateZ(' + (window.innerWidth < 400 ? -1000 : -2500) + 'px)'
+				'translateX(' + (-indexh * overviewSlideWidth / overviewRatio) + 'px)',
+				'translateY(' + (-indexv * overviewSlideHeight / overviewRatio) + 'px)',
+				'translateZ(' + (window.innerWidth < 400 ? -x / overviewRatio : -y / overviewRatio) + 'px)'
 			].join(' ')
 		});
 
@@ -2497,11 +2501,11 @@
 
 			// The number of steps away from the present slide that will
 			// be visible
-			var viewDistance = isOverview() ? 10 : config.viewDistance;
+			var viewDistance = !isOverview() ? 10 : config.viewDistance;
 
 			// Limit view distance on weaker devices
 			if (isMobileDevice) {
-				viewDistance = isOverview() ? 6 : 2;
+				viewDistance = !isOverview() ? 6 : 2;
 			}
 
 			// All slides need to be visible when exporting to PDF

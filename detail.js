@@ -107,7 +107,11 @@ var app = (function() {
     console.log(key + ':' + keyName);
     if (key == 27) {
       isFullScreen = false;
-    } else if (keyName != 'Control' && keyName != 'F12' && keyName != 'F5' && keyName != 'Alt' && keyName != 'b') {
+    } else if (keyName != 'Control' &&
+      keyName != 'F12' &&
+      keyName != 'F5' &&
+      keyName != 'Alt') {
+
       enterFullscreen();
     }
   });
@@ -133,7 +137,7 @@ var app = (function() {
 
     transition: 'slide', // none/fade/slide/convex/concave/zoom/default
     // Number of slides away from the current that are visible
-    viewDistance: 5,
+    viewDistance: 3,
 
     slideNumber: 'c/t',
     backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
@@ -156,7 +160,23 @@ var app = (function() {
       async: true
     }],
     keyboard: {
-      32: nextPage
+      //空格：翻页并开始计时
+      32: nextPage,
+      //W:宽屏
+      87: function() {
+        $('.slides').toggleClass('layout-widescreen');
+      },
+      //P：进入画笔
+      80: function() {
+        Reveal.extend.showPaint();
+      },
+      //C: 清空画笔
+      67: function() {
+        Reveal.extend.removePaint();
+      },
+      27: function() {
+        Reveal.extend.removePaint();
+      }
     }
   };
 
@@ -164,19 +184,19 @@ var app = (function() {
     //MD文件默认图片目录
     var DEFAULT_SLIDE_IMG_CONTENT = $('section').first().attr('data-img-content') || 'markdown';
     var obj = $('section [data-markdown-parsed="true"] img');
-    var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT+'/');
-    obj.attr('src',imgSrc);
+    var imgSrc = obj.attr('src').replace('./', './' + DEFAULT_SLIDE_IMG_CONTENT + '/');
+    obj.attr('src', imgSrc);
   };
 
   function fullImg() {
-        //图片处理
-        var img = $('section [data-markdown-parsed="true"] img');
-        var imgList = [];
-        for(var i=0;i<img.length;i++){
-          imgList.push(img[i]);
-        }
-        screenfull(imgList);
+    //图片处理
+    var img = $('section [data-markdown-parsed="true"] img');
+    var imgList = [];
+    for (var i = 0; i < img.length; i++) {
+      imgList.push(img[i]);
     }
+    screenfull(imgList);
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     initDom();
