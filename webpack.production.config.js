@@ -47,11 +47,11 @@ var webpackConfig = {
 		}, {
 			test: /\.json$/,
 			loader: "json-loader"
-		},{
+		}/*,{
 			test: /\.js$/,
 			exclude: /(node_modules|bower_components)/,
 			loader: 'babel-loader?presets[]=es2015'
-		}]
+		}*/]
 	},
 	postcss: [
 		require('autoprefixer')
