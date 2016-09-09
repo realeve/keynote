@@ -68,7 +68,10 @@ var app = (function() {
     styleList = styleList.map(function(item) {
       return '<a href="#" name="theme" onclick="document.getElementById(\'theme\').setAttribute(\'href\',\'tools/css/theme/' + item + '.css\'); return false;">' + item + '</a>';
     });
-    var str = '\n    <div style="margin-top:40px; font-Size:14pt;">请选择主题: <br>\n      ' + styleList.join(' - ') + '\n    </div>';
+    var str = `
+    <div style="margin-top:40px; font-Size:14pt;">请选择主题: <br>
+      ${styleList.join(' - ')}
+    </div>`;
     $('section').first().append(date + str);
   };
 

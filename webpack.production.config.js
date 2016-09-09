@@ -47,11 +47,7 @@ var webpackConfig = {
 		}, {
 			test: /\.json$/,
 			loader: "json-loader"
-		}/*,{
-			test: /\.js$/,
-			exclude: /(node_modules|bower_components)/,
-			loader: 'babel-loader?presets[]=es2015'
-		}*/]
+		}]
 	},
 	postcss: [
 		require('autoprefixer')
@@ -62,10 +58,10 @@ var webpackConfig = {
 		new webpack.optimize.OccurenceOrderPlugin(),
 		//new webpack.optimize.CommonsChunkPlugin('common.min.js'),
 		new webpack.optimize.UglifyJsPlugin()
-	],
+	]	/*,
 	externals: {
 		jquery: 'window.$'
-	}
+	}*/
 };
 
 for (var key in webpackConfig.entry) {

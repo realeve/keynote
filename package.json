@@ -4,7 +4,7 @@
   "description": "keynote",
   "main": "bundle.js",
   "scripts": {
-    "init": "babel src -d lib",
+    "init": "babel es6 -d lib",
     "start": "webpack --progress --color",
     "build": "webpack -p --config webpack.production.config.js --progress --color",
     "debug": "webpack-dev-server --watch"
@@ -22,7 +22,6 @@
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.6.5",
-    "jquery": "^2.1.4",
     "json-loader": "^0.5.4",
     "postcss-loader": "^0.9.1",
     "style-loader": "^0.13.1",

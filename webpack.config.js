@@ -63,18 +63,11 @@ var webpackConfig = {
 		new webpack.BannerPlugin('This file is created by realeve'),
 		//将公共代码抽离出来合并为一个文件
 		//new webpack.optimize.CommonsChunkPlugin('common.js'),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		//new webpack.optimize.UglifyJsPlugin(),
-		/*new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery",
-			"window.jQuery": "jquery",
-			"window.$": "jquery"
-		})*/
-	],
+		new webpack.optimize.OccurenceOrderPlugin()
+	]/*,
 	externals: {
 		jquery: 'window.$'
-	}
+	}*/
 	/*devServer: {
 		contentBase: "./dist",//本地服务器所加载的页面所在的目录
 		colors: true,//终端中输出结果为彩色

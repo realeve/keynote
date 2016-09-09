@@ -147,23 +147,23 @@
  }
 
  h1 {
-     font-size: 3em!important;
+     font-size: 2.5em!important;
      line-height: 1.5;
      margin-bottom: 0.5em;
      text-shadow: 2px 3px 4px #000
  }
 
  h2{
-  font-size: 2.6em!important;
+  font-size: 2em!important;
  }
  h3{
-  font-size:2em!important;
+  font-size:1.6em!important;
  }
  h4{
-  font-size: 1.6em!important;
+  font-size: 1.2em!important;
  }
 h5{
-  font-size:1.2em!important;
+  font-size:1em!important;
 }
  p {
      line-height: 1.75em
