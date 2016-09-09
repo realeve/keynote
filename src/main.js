@@ -1,8 +1,8 @@
-const ajax = (path, callback) => {
+const ajax = function(path, callback) {
   let xhr = new XMLHttpRequest();
   xhr.open('get', path, true);
   xhr.send();
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = function() {
     if (xhr.readyState == 4) {
       if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
         callback(xhr.responseText);
@@ -11,7 +11,7 @@ const ajax = (path, callback) => {
   };
 };
 
-const init = menu => {
+var init = function init(menu) {
   let result = '';
   let data = JSON.parse(menu);
   data.list.forEach(function(value, i) {
@@ -29,6 +29,6 @@ const init = menu => {
   document.getElementById('list').innerHTML = result;
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   ajax('./menu.json', init);
 }, false);

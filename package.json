@@ -4,6 +4,7 @@
   "description": "keynote",
   "main": "bundle.js",
   "scripts": {
+    "init": "babel src -d lib",
     "start": "webpack --progress --color",
     "build": "webpack -p --config webpack.production.config.js --progress --color",
     "debug": "webpack-dev-server --watch"

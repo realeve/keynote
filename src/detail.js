@@ -21,7 +21,7 @@ var app = (function() {
       return null;
     };
 
-    const getQueryObj = () => {
+    const getQueryObj = function() {
       var obj = {
         file: getUrlParam('file'),
         title: decodeURI(getUrlParam('title')),
@@ -70,7 +70,6 @@ var app = (function() {
     });
     var str = `
     <div style="margin-top:40px; font-Size:14pt;">请选择主题: <br>
-      <!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
       ${styleList.join(' - ')}
     </div>`;
     $('section').first().append(date + str);
@@ -197,7 +196,7 @@ var app = (function() {
     screenfull(imgList);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function(){
     initDom();
     Reveal.initialize(option);
   }, false);

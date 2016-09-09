@@ -62,7 +62,7 @@ var webpackConfig = {
 		new ExtractTextPlugin(PROD ? '[name]-[hash].min.css' : '[name]-[hash].css'),
 		new webpack.BannerPlugin('This file is created by realeve'),
 		//将公共代码抽离出来合并为一个文件
-		new webpack.optimize.CommonsChunkPlugin('common.js'),
+		//new webpack.optimize.CommonsChunkPlugin('common.js'),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		//new webpack.optimize.UglifyJsPlugin(),
 		/*new webpack.ProvidePlugin({
