@@ -296,7 +296,7 @@ Reveal.initialize({
 <!-- .slide: data-background="#41b883" -->
 ##开源与共享地址
 
-源码下载。
+[源码下载](./dist.rar)。
 
 ===
 ###用法
