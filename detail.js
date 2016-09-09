@@ -1,5 +1,5 @@
 var app = (function() {
-
+  var defaultTheme = 'vue';
   var initDom = function() {
     var getUrlParam = function(name) {
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -15,7 +15,7 @@ var app = (function() {
         theme: getUrlParam('theme')
       };
       if (obj.theme === null) {
-        obj.theme = 'color';
+        obj.theme = defaultTheme;
       }
       obj.theme = 'tools/css/theme/' + obj.theme + '.css';
       obj.file = './markdown/' + obj.file + '.md';
@@ -48,7 +48,7 @@ var app = (function() {
     };
 
     var date = '<h4>' + getDate() + '</h4>';
-    var styleList = ['white', 'league', 'sky', 'beige', 'simple', 'serif', 'blood', 'night', 'moon', 'solarized', 'lowpoly', 'lowpolydark', 'black', 'color', 'blue', 'green'];
+    var styleList = ['white', 'league', 'sky', 'beige', 'simple', 'serif', 'blood', 'night', 'moon', 'solarized', 'lowpoly', 'lowpolydark', 'black', 'color', 'blue', 'green', 'vue'];
     styleList = styleList.map(function(item) {
       return '<a href="#" name="theme" onclick="document.getElementById(\'theme\').setAttribute(\'href\',\'tools/css/theme/' + item + '.css\'); return false;">' + item + '</a>';
     });

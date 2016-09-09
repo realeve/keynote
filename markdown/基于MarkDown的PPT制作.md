@@ -2,6 +2,7 @@
 >技术质量部 李宾
 
 ----
+<!-- .slide: data-background="#41b883" -->
 ##什么是MarkDown
 >Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。
 
@@ -83,6 +84,7 @@ Markdown 的粗体和斜体也非常简单，用两个 \* 包含一段文本就�
 至此，关于MarkDown的主要语法就结束了，更详细的说明可以看[这里]()。
 
 ----
+<!-- .slide: data-background="#41b883" -->
 ##<i class="fa fa-bookmark success"></i> 如何用MARKDOWN写SLIDE
  当前所看到的这个Slide就是用MARKDOWN所写成，你可以点击 [这里](./markdown/基于MarkDown的PPT制作.md) 下载MARKDOWN文件浏览其中的样式。
 
@@ -167,7 +169,7 @@ data-separator表示每个横向页面的分割符，data-separator-vertical表�
 
 ===
 ###JS部部分:REVEAL的初始化
-<!-- .slide: data-background="#445" -->
+<!-- .slide: data-background="#41b883" -->
 ```js
 Reveal.initialize({
     dependencies: [{
@@ -184,6 +186,7 @@ Reveal.initialize({
 在本页面按问号(?)键调出帮助界面。
 
 ----
+<!-- .slide: data-background="#41b883" -->
 ##REVEAL功能改造
 在本页面按问号(?)键调出帮助界面。
 
@@ -290,6 +293,7 @@ Reveal.initialize({
 ###更多主题的引入
 
 ----
+<!-- .slide: data-background="#41b883" -->
 ##开源与共享地址
 
 源码下载。
@@ -301,5 +305,6 @@ Reveal.initialize({
 ###其它注意事项
 
 ----
+<!-- .slide: data-background="#41b883" -->
 #Q&A
 
