@@ -27,7 +27,7 @@ var webpackConfig = {
 	entry: {
 		index: "./index.js",
 		detail: "./detail.js",
-		notes:"./notes.js"
+		notes: "./notes.js"
 	},
 	output: {
 		path: outputPath, // 输出到版本号目录
@@ -36,23 +36,25 @@ var webpackConfig = {
 	//watch:true,
 	module: {
 		loaders: [{
-			test: /\.(png|jpg|jpeg|gif|woff|woff2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-			loader: 'url-loader?limit=8192'
-		}, {
-			test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-			loader: 'file'
-		}, {
-			test: /\.css$/,
-			//loader: "style!css?modules!postcss"
-			loader: ExtractTextPlugin.extract('style', 'css')
-		}, {
-			test: /\.json$/,
-			loader: "json-loader"
-		}/*,{
-			test: /\.js$/,
-			exclude: /(node_modules|bower_components)/,
-			loader: 'babel-loader?presets[]=es2015'
-		}*/]
+				test: /\.(png|jpg|jpeg|gif|woff|woff2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+				loader: 'url-loader?limit=8192'
+			}, {
+				test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+				loader: 'file'
+			}, {
+				test: /\.css$/,
+				//loader: "style!css?modules!postcss"
+				loader: ExtractTextPlugin.extract('style', 'css')
+			}, {
+				test: /\.json$/,
+				loader: "json-loader"
+			}
+			/*,{
+						test: /\.js$/,
+						exclude: /(node_modules|bower_components)/,
+						loader: 'babel-loader?presets[]=es2015'
+					}*/
+		]
 	},
 	postcss: [
 		require('autoprefixer')
@@ -64,10 +66,10 @@ var webpackConfig = {
 		//将公共代码抽离出来合并为一个文件
 		//new webpack.optimize.CommonsChunkPlugin('common.js'),
 		new webpack.optimize.OccurenceOrderPlugin()
-	]/*,
+	],
 	externals: {
 		jquery: 'window.$'
-	}*/
+	}
 	/*devServer: {
 		contentBase: "./dist",//本地服务器所加载的页面所在的目录
 		colors: true,//终端中输出结果为彩色
@@ -81,7 +83,7 @@ for (var key in webpackConfig.entry) {
 	var plugin = new HtmlWebpackPlugin({
 		title: packageInfo.description,
 		minify: minifiyConfig,
-		template: tplPath+key + '.html',
+		template: tplPath + key + '.html',
 		filename: key + '.html',
 		chunks: [key],
 		hash: false

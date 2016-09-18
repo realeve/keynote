@@ -1,6 +1,6 @@
 require('./lib/js/head.min.js');
 
-var $ = require('./js/jquery.min.js');
+//var $ = require('./js/jquery.min.js');
 var Reveal = require('./js/reveal.js');
 
 var screenfull = require('./js/img.screenfull.js');
@@ -47,7 +47,19 @@ var app = (function() {
 
     require('./plugin/markdown/markdown.js');
     hljs.initHighlightingOnLoad();
+    setQrCode();
+  };
 
+  var setQrCode = function() {
+    require('./js/jquery.qrcode.min.js');
+    //<h3>Q&amp;A</h3>
+    $('.slides').append('<section><div id="share"></div></section>');
+    var url = window.location.href.split('#')[0];
+    $('#share').qrcode({
+      width: 256,
+      height: 256,
+      text: url
+    });
   };
 
   var appendThemeList = function() {
@@ -193,7 +205,7 @@ var app = (function() {
     screenfull(imgList);
   }
 
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', function() {
     initDom();
     Reveal.initialize(option);
   }, false);

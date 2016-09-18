@@ -26,10 +26,11 @@ html, body, .reveal div, .reveal applet, .reveal object, .reveal iframe,
   border: 0;
   font-size: 100%;
   font: inherit;
+  line-height: 1.5em;
   vertical-align: baseline; }
 .reveal span{
   border:0;
-  font-size:100%;
+  font-size:80%;
   font: inherit;
   vertical-align: baseline;
 }

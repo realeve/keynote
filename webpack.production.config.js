@@ -27,7 +27,7 @@ var webpackConfig = {
 	entry: {
 		index: "./index.js",
 		detail: "./detail.js",
-		notes:"./notes.js"
+		notes: "./notes.js"
 	},
 	output: {
 		path: outputPath, // 输出到版本号目录
@@ -58,10 +58,10 @@ var webpackConfig = {
 		new webpack.optimize.OccurenceOrderPlugin(),
 		//new webpack.optimize.CommonsChunkPlugin('common.min.js'),
 		new webpack.optimize.UglifyJsPlugin()
-	]	/*,
+	],
 	externals: {
 		jquery: 'window.$'
-	}*/
+	}
 };
 
 for (var key in webpackConfig.entry) {
@@ -69,7 +69,7 @@ for (var key in webpackConfig.entry) {
 	var plugin = new HtmlWebpackPlugin({
 		title: packageInfo.description,
 		minify: minifiyConfig,
-		template: tplPath+key + '.html',
+		template: tplPath + key + '.html',
 		filename: key + '.html',
 		chunks: [key],
 		hash: false
