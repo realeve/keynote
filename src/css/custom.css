@@ -12,10 +12,6 @@
      color: #fff;
      letter-spacing: 0;
  }
- body{
- 	letter-spacing: 0.25em;
- 	font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif !important;
- }
  .slide-number{
  	letter-spacing: 0;
  }

@@ -26,6 +26,8 @@ html, body, .reveal div, .reveal applet, .reveal object, .reveal iframe,
   border: 0;
   font-size: 100%;
   font: inherit;
+  font-family: -apple-system,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  letter-spacing: 0.25em;
   line-height: 1.5em;
   vertical-align: baseline; }
 .reveal span{
