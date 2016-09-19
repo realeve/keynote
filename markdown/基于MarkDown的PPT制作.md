@@ -22,7 +22,7 @@
 * 无序列表
 * 无序列表
 ```
-<!-- class="rollIn" -->
+
 * 无序列表
 * 无序列表
 * 无序列表
@@ -81,10 +81,10 @@
 ===
 ###粗体与斜体
 Markdown 的粗体和斜体也非常简单，用两个 \* 包含一段文本就是 **粗体** 的语法，用一个 \* 包含一段文本就是 *斜体* 的语法。
-至此，关于MarkDown的主要语法就结束了，更详细的说明可以看[这里](http://sspai.com/25137)。
+至此，关于MarkDown的主要语法就结束了，更详细的说明可以看[这里]()。
 
 ----
-<!-- .slide: style="background-image:url('./img/bg1.png')" -->
+<!-- .slide: data-background="#41b883" -->
 ##<i class="fa fa-bookmark success"></i> 如何用MARKDOWN写SLIDE
  当前所看到的这个Slide就是用MARKDOWN所写成，你可以点击 [这里](./markdown/基于MarkDown的PPT制作.md) 下载MARKDOWN文件浏览其中的样式。
 
@@ -296,7 +296,7 @@ Reveal.initialize({
 <!-- .slide: data-background="#41b883" -->
 ##开源与共享地址
 
-源码下载。
+[源码下载](./dist.rar)。
 
 ===
 ###用法
