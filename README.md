@@ -1,6 +1,6 @@
 ## HomePage
 
-[realeve.github.io/keynote](https://realeve.github.io/keynote)
+[realeve.github.io/keynote](https://realeve.github.io/keynote/dist)
 
 ## document syntax
 
